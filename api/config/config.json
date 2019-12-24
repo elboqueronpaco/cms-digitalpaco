@@ -1,0 +1,14 @@
+{
+    "serverPort": 5000,
+    "db": {
+        "host": "localhost",
+        "dialect": "postgres",
+        "database": "api_digitalpaco",
+        "username": "elboqueronpaco",
+        "password": "Ocap_5791"
+    },
+    "security": {
+        "secretKey": "Esta es mi clave para esta api",
+        "expiresIn": "7d"
+    }
+}
