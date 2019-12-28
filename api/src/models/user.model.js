@@ -1,3 +1,6 @@
+import encrypt from '../lib/encrypt'
+import createAvatar from '../lib/avatar'
+
 export default (sequelize, { BOOLEAN, STRING, UUID, UUIDV4, ENUM }) => {
   const User = sequelize.define('User', {
     id: {
@@ -9,13 +12,7 @@ export default (sequelize, { BOOLEAN, STRING, UUID, UUIDV4, ENUM }) => {
     username: {
       type: STRING,
       allowNull: false,
-      unique: true,
-      validate: {
-        isAlphanumiric: {
-          args: true,
-          msg: 'El nombre de usuario acepta caracteres alfanumericos'
-        }
-      }
+      unique: true
     },
     password: {
       type: STRING,
@@ -34,17 +31,28 @@ export default (sequelize, { BOOLEAN, STRING, UUID, UUIDV4, ENUM }) => {
     },
     avatar: {
       type: STRING,
-      allowNull: false
+      validate: {
+        isAlphanumiric: {
+          args: true,
+          msg: 'El nombre de usuario acepta caracteres alfanumericos'
+        }
+      }
     },
     privilege: {
-      type: ENUM,
-      values: ['Admin', 'User'],
+      type: STRING,
       defaultValue: 'User'
     },
     active: {
       type: BOOLEAN,
       allowNull: false,
       defaultValue: false
+    }
+  }, {
+    hooks: {
+      beforeCreate: user => {
+        user.password = encrypt(user.password)
+        user.avatar = `https://gavatar.com/avatar/${createAvatar(user.email)}`
+      }
     }
   })
   User.associate = models => {

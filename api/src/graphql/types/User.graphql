@@ -1,0 +1,33 @@
+
+type User {
+    id: UUID!
+    username: String!
+    password: String!
+    email: String!
+    avatar: String!
+    privilege: String!
+    active: Boolean!
+    createAt: Datatime!
+    updateAt: Datatime!
+}
+type Query {
+    getUsers: [User!]
+}
+
+type Mutation {
+    singup(input: CreateUserInput): User!
+    singin(input: SinginInput): AuthPayload!
+}
+
+input CreateUserInput {
+    username: String!,
+    password: String!,
+    email: String
+}
+input SinginInput {
+    email: String!,
+    password: String
+}
+type AuthPayload {
+    token: String!
+}

@@ -3,12 +3,12 @@
     "db": {
         "host": "localhost",
         "dialect": "postgres",
-        "database": "api_digitalpaco",
+        "database": "cms_digitalpaco",
         "username": "elboqueronpaco",
         "password": "Ocap_5791"
     },
     "security": {
-        "secretKey": "Esta es mi clave para esta api",
+        "secretKey": "Cm5Gr4pHQ1",
         "expiresIn": "7d"
     }
 }
