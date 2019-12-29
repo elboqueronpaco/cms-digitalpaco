@@ -4,9 +4,14 @@
   "description": "Creación de api con graphql, Apollo, sequelize y postgreSQL",
   "main": "src/index.js",
   "scripts": {
-    "lint": "standard --fix",
+    "lint": "eslint --fix src",
     "start": "nodemon src/index.js --ext js,graphql --exec babel-node",
-    "test": "jest.js"
+    "test": "jest --verbose ./src"
+  },
+  "husky": {
+    "hooks": {
+        "pre-push": "npm run lint && npm test"
+    }
   },
   "repository": {
     "type": "git",
@@ -22,8 +27,21 @@
     "@babel/core": "^7.7.7",
     "@babel/node": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^6.0.3",
     "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standart": "^0.2.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
     "nodemon": "^2.0.2",
+    "sequelize-mock": "^0.10.2",
     "standard": "^14.3.1"
   },
   "dependencies": {
